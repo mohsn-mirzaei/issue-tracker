@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import localfont from "next/font/local";
+import NavBar from "./NavBar";
 
 const iranYekan = localfont({
   src: "../public/fonts/Qs_Iranyekan.woff2",
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={iranYekan.className} dir="rtl">
+        <NavBar />
         <main>{children}</main>
       </body>
     </html>
