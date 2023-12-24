@@ -1,12 +1,14 @@
 import React from "react";
-import { Flex, Text, Button } from "@radix-ui/themes";
+import { Button } from "@radix-ui/themes";
+import Link from "next/link";
 
 const issuesPage = () => {
   return (
-    <Flex direction="column" gap="2">
-      <Text>Hello from Radix Themes :)</Text>
-      <Button>Let's go</Button>
-    </Flex>
+    <div>
+      <Button>
+        <Link href="/issues/new">مسئله جدید</Link>
+      </Button>
+    </div>
   );
 };
 
