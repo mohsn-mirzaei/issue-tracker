@@ -1,4 +1,5 @@
 import "@radix-ui/themes/styles.css";
+import "./theme-config.css";
 import "./globals.css";
 import type { Metadata } from "next";
 import localfont from "next/font/local";
@@ -7,6 +8,7 @@ import NavBar from "./NavBar";
 
 const iranYekan = localfont({
   src: "../public/fonts/Qs_Iranyekan.woff2",
+  variable: "--font-iranyekan",
 });
 
 export const metadata: Metadata = {
@@ -20,9 +22,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={iranYekan.className} dir="rtl">
-        <Theme>
+    <html lang="fa">
+      <body className={iranYekan.variable} dir="rtl">
+        <Theme appearance="light" accentColor="violet">
           <NavBar />
           <main className="p-5">{children}</main>
         </Theme>
