@@ -3,22 +3,10 @@ import { Button, Table, TableBody } from "@radix-ui/themes";
 import Link from "next/link";
 import prisma from "@/prisma/client";
 import persianData from "../persianData";
+import IssueStatusBadge from "../components/IssueStatusBadge";
 
 const issuesPage = async () => {
   const issues = await prisma?.issue.findMany();
-
-  const showStatus = (status: string) => {
-    switch (status) {
-      case "OPEN":
-        return "باز";
-      case "IN_PROGRESS":
-        return "در حال انجام";
-      case "CLOSED":
-        return "بسته";
-      default:
-        return "وضعیت نامعتبر";
-    }
-  };
 
   return (
     <div>
@@ -48,18 +36,19 @@ const issuesPage = async () => {
         <TableBody>
           {issues?.map((issue) => {
             const date = persianData(issue.createdAt);
-            const status = showStatus(issue.status);
             return (
               <Table.Row key={issue.id}>
                 <Table.Cell align="right" className="hidden md:table-cell">
                   {date}
                 </Table.Cell>
                 <Table.Cell align="right" className="hidden md:table-cell">
-                  {status}
+                  <IssueStatusBadge status={issue.status} />
                 </Table.Cell>
                 <Table.Cell align="right">
                   {issue.title}
-                  <div className="block md:hidden">{status}</div>
+                  <div className="block md:hidden">
+                    <IssueStatusBadge status={issue.status} />
+                  </div>
                 </Table.Cell>
               </Table.Row>
             );
