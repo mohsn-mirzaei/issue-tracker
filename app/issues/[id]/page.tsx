@@ -3,6 +3,7 @@ import persianData from "@/app/persianData";
 import prisma from "@/prisma/client";
 import { Card, Flex, Heading, Text } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
+import ReactMarkdown from "react-markdown";
 
 interface Props {
   params: { id: string };
@@ -21,8 +22,8 @@ const IssueDetailPage = async ({ params }: Props) => {
         <Text>{persianData(issue.createdAt)}</Text>
         <IssueStatusBadge status={issue.status} />
       </Flex>
-      <Card>
-        <Text>{issue.description}</Text>
+      <Card className="prose" mt="4" dir="auto">
+        <ReactMarkdown children={issue.description} className="px-4" />
       </Card>
     </>
   );
