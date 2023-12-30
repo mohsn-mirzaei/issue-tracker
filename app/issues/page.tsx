@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, Table, TableBody } from "@radix-ui/themes";
-import Link from "next/link";
+import { Table, TableBody } from "@radix-ui/themes";
+import Link from "../components/Link";
 import prisma from "@/prisma/client";
 import persianData from "../persianData";
 import IssueStatusBadge from "../components/IssueStatusBadge";
