@@ -13,7 +13,7 @@ const IssueDetails = ({ issue }: { issue: Issue }) => {
         <IssueStatusBadge status={issue.status} />
       </Flex>
       <Card className="prose" mt="4" dir="auto">
-        <ReactMarkdown children={issue.description} className="px-4" />
+        <ReactMarkdown className="px-4">{issue.description}</ReactMarkdown>
       </Card>
     </>
   );
