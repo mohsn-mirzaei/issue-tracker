@@ -12,7 +12,7 @@ const IssueDetails = ({ issue }: { issue: Issue }) => {
         <Text>{persianData(issue.createdAt)}</Text>
         <IssueStatusBadge status={issue.status} />
       </Flex>
-      <Card className="prose" mt="4" dir="auto">
+      <Card className="prose max-w-full" mt="4" dir="auto">
         <ReactMarkdown className="px-4">{issue.description}</ReactMarkdown>
       </Card>
     </>
