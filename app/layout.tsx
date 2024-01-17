@@ -6,6 +6,7 @@ import localfont from "next/font/local";
 import { Container, Theme } from "@radix-ui/themes";
 import NavBar from "./NavBar";
 import AuthProvider from "./auth/Provider";
+import QueryClientProvider from "./QueryClientProvider";
 
 const iranYekan = localfont({
   src: "../public/fonts/Qs_Iranyekan.woff2",
@@ -25,14 +26,16 @@ export default function RootLayout({
   return (
     <html lang="fa">
       <body className={iranYekan.variable} dir="rtl">
-        <AuthProvider>
-          <Theme appearance="light" accentColor="violet">
-            <NavBar />
-            <main className="p-5">
-              <Container>{children}</Container>
-            </main>
-          </Theme>
-        </AuthProvider>
+        <QueryClientProvider>
+          <AuthProvider>
+            <Theme appearance="light" accentColor="violet">
+              <NavBar />
+              <main className="p-5">
+                <Container>{children}</Container>
+              </main>
+            </Theme>
+          </AuthProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );
