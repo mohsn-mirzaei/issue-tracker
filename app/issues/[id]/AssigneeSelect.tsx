@@ -1,40 +1,33 @@
 "use client";
 
+import Skeleton from "@/app/components/Skeleton";
 import { Issue, User } from "@prisma/client";
 import { Select } from "@radix-ui/themes";
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import Skeleton from "@/app/components/Skeleton";
+import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
 const AssigneeSelect = ({ issue }: { issue: Issue }) => {
-  const {
-    data: users,
-    error,
-    isLoading,
-  } = useQuery<User[]>({
-    queryKey: ["users"],
-    queryFn: () => axios.get("/api/users").then((res) => res.data),
-    staleTime: 1000 * 60, //60s
-    retry: 3,
-  });
+  const { data: users, error, isLoading } = useUsers();
 
   if (error) return null;
 
   if (isLoading) return <Skeleton />;
 
+  const assignIssue = (userId: string) => {
+    axios
+      .patch(`/api/issues/${issue.id}`, {
+        assignedToUserId: userId || null,
+      })
+      .then(() => toast.success("تغییر با موفقیت اعمال شد."))
+      .catch(() => toast.error("تغییر اعمال نشد!"));
+  };
+
   return (
     <>
       <Select.Root
         defaultValue={issue.assignedToUserId || ""}
-        onValueChange={(userId) => {
-          axios
-            .patch(`/api/issues/${issue.id}`, {
-              assignedToUserId: userId || null,
-            })
-            .then(() => toast.success("تغییر با موفقیت اعمال شد."))
-            .catch(() => toast.error("تغییر اعمال نشد!"));
-        }}
+        onValueChange={assignIssue}
       >
         <Select.Trigger placeholder="اختصاص دادن به..." dir="ltr" />
         <Select.Content>
@@ -53,5 +46,13 @@ const AssigneeSelect = ({ issue }: { issue: Issue }) => {
     </>
   );
 };
+
+const useUsers = () =>
+  useQuery<User[]>({
+    queryKey: ["users"],
+    queryFn: () => axios.get("/api/users").then((res) => res.data),
+    staleTime: 1000 * 60, //60s
+    retry: 3,
+  });
 
 export default AssigneeSelect;
