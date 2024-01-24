@@ -41,7 +41,7 @@ const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
           <AlertDialog.Description>
             آیا از حذف کردن این مسئله مطمئن هستید؟ این عملیات غیرقابل برگشت است!
           </AlertDialog.Description>
-          <Flex gap="3">
+          <Flex gap="3" justify="end">
             <AlertDialog.Cancel>
               <Button variant="soft" color="gray" mt="4">
                 لغو
