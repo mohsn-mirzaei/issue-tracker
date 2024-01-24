@@ -54,6 +54,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
           <TextField.Input
             defaultValue={issue?.title}
             placeholder="موضوع"
+            className="p-4"
             {...register("title")}
           />
         </TextField.Root>
