@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className={iranYekan.variable} dir="rtl">
         <QueryClientProvider>
           <AuthProvider>
-            <Theme appearance="light" accentColor="violet">
+            <Theme accentColor="violet">
               <NavBar />
               <main className="p-5">
                 <Container>{children}</Container>
