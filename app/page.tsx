@@ -27,6 +27,8 @@ export default async function Home() {
   );
 }
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "پیگیری مسائل - داشبورد",
   description: "مشاهده خلاصه مسائل پروژه",
