@@ -41,4 +41,4 @@ pnpm dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can check the deployed version of this project through the following link:
-[game-hub](https://gamehub.mohsenmirzaei.ir/)
+[issue-tracker](https://issue-tracker.mohsenmirzaei.dev/)
